@@ -1,30 +1,35 @@
 var exports = module.exports ={}
 
-	exports.testeInserts = function(){
+	exports.testeInserts = function(numInserts){
 		var SQLite = require('react-native-sqlite-storage');
 		const now = require("performance-now");
 
-		var db = SQLite.openDatabase('bancoSqlite', '1.0', 'bdSqlite', '10240');
+		var nome = 'teste';
+		var j = 0;
+
+		var db = SQLite.openDatabase('bancoSqlite');
 
 	    db.transaction(function(tx){
-	      tx.executeSql("CREATE TABLE IF NOT EXISTS my (id INTEGER, nome VARCHAR)")
+	      tx.executeSql("CREATE TABLE tabela1 (id INTEGER, nome VARCHAR)")
 	    });
 
-	    var id = 1;
-	    var nome = 'pexe';
+//	    var start = now();
+		console.log(' ---- Inicio da operação de ' + numInserts + ' Inserts ----');
+	    for(var i = 0; i < numInserts; i++){
+	    	db.transaction(function(tx){
+	      		tx.executeSql('INSERT INTO tabela1 VALUES(?,?)', [i,nome]);
+	      		console.log(" ---- Conclusão do inserts numero:  " + j++ + " ---- ");
+	    	});
+	    }
+
+/*
+	    var end = now();
 
 	    db.transaction(function(tx){
-	      tx.executeSql('INSERT INTO my VALUES(?,?)', [id,nome]);
-	    });
-
-	    db.transaction(function(tx){
-	      tx.executeSql('SELECT * FROM my', [], function(tx,resultado){
-	        var row = resultado.rows.item(0);
-	        alert(row['nome']);
+	      tx.executeSql('SELECT * FROM tabela1', [], function(tx,resultado){
 	      });
 	    });
 
-		
-
-
+	    alert("Inicio: " + start + "\nTermino: " + end + "\nDiferença: " + (end-start));
+*/
 	};
