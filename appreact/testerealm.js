@@ -41,13 +41,14 @@ var exports = module.exports ={};
         };
         let realm = new Realm({schema: [tabela1]});
         var start = now();
-        realm.write(() => {
-            for(i = 1; i <= numInserts; i++){
+        for(i = 0; i < numInserts; i++){
+            realm.write(() => {
                 realm.create('tabela1', {id: i, a: 'teste', b: 'teste', c: 'teste', d: 'teste', e: 'teste', f: 'teste', g: 'teste'
-            , h: 'teste', i: 'teste', j: 'teste', k: 'teste', l: 'teste', m: 'teste', n: 'teste', o: 'teste', p: 'teste', q: 'teste'
-        , r: 'teste', s: 'teste', t: 'teste', u: 'teste', v: 'teste', x: 'teste', w: 'teste', y: 'teste', z: 'teste'});
-            }
-        });
+                , h: 'teste', i: 'teste', j: 'teste', k: 'teste', l: 'teste', m: 'teste', n: 'teste', o: 'teste', p: 'teste', q: 'teste'
+                , r: 'teste', s: 'teste', t: 'teste', u: 'teste', v: 'teste', x: 'teste', w: 'teste', y: 'teste', z: 'teste'});
+                console.log(" ---- Conclusão insert: " + i + " ---- ");
+            });
+        };
         var end = now();
         let r = realm.objects('tabela1').filtered('a = "teste"');
         alert('inicio: ' + start + '\nfim: ' + end + '\ndiferenca: ' + (end - start) + '\nqtde dados' + r.length);
