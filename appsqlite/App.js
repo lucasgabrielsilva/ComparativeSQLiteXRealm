@@ -3,6 +3,10 @@ import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
 var x = require('./testeSqlite.js');
 
 export default class ButtonBasics extends Component {
+  excluir() {
+    x.excluir();
+
+  };
   teste1() {
     x.testeInserts(1000);
 
@@ -47,6 +51,12 @@ export default class ButtonBasics extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+          <Button
+            onPress={this.excluir}
+            title="Excluir DB"
+          />
+        </View>
         <View style={styles.buttonContainer}>
           <Button
             onPress={this.teste1}
@@ -124,5 +134,5 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: 'row',
     justifyContent: 'space-between'
-  }
+  },
 })

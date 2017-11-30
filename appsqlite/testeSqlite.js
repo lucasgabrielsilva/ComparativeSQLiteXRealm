@@ -1,13 +1,15 @@
 var exports = module.exports ={}
 
+var SQLite = require('react-native-sqlite-storage');
+var db;
+
 	exports.testeInserts = function(numInserts){
-		var SQLite = require('react-native-sqlite-storage');
 		const now = require("performance-now");
 
 		var nome = 'teste';
 		var j = 0;
 
-		var db = SQLite.openDatabase('bancoSqlite');
+		db = SQLite.openDatabase('bancoSqlite');
 
 	    db.transaction(function(tx){
 	      tx.executeSql('CREATE TABLE tabela1 (id INTEGER PRIMARY KEY, a VARCHAR, b VARCHAR, c VARCHAR, d VARCHAR, e VARCHAR' +
@@ -36,3 +38,10 @@ var exports = module.exports ={}
 	    alert("Inicio: " + start + "\nTermino: " + end + "\nDiferença: " + (end-start));
 */
 	};
+
+	exports.excluir = function(){
+
+		
+
+		SQLite.deleteDatabase('bancoSqlite');
+	}
