@@ -18,14 +18,23 @@ var db;
 	      	', v VARCHAR, x VARCHAR, w VARCHAR, y VARCHAR, z VARCHAR)');
 	    });
 
-//	    var start = now();
+	    var start = now();
+	    var num = numInserts - 1;
 		console.log(' ---- Inicio da operação de ' + numInserts + ' Inserts ----');
-	    for(var i = 0; i < numInserts; i++){
+	    for(var i = 0; i < num; i++){
 	    	db.transaction(function(tx){
 	      		tx.executeSql('INSERT INTO tabela1 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [j++,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome]);
 	      		console.log(" ---- Conclusao do inserts numero:  " + j + " ---- ");
 	    	});
 	    }
+
+	    db.transaction(function(tx){
+	      		tx.executeSql('INSERT INTO tabela1 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [numInserts,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome,nome]);
+	      		console.log(" ---- Conclusao do inserts numero:  " + j + " ---- ");
+	      		var end = now();
+	      		alert('inicio: ' + start + '\nfim: ' + end + '\ndiferenca: ' + (end - start));
+	    	});
+
 
 /*
 	    var end = now();
